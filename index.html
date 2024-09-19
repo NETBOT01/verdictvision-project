@@ -1,0 +1,456 @@
+<html><head><base href="https://www.verdictvision.gov.in/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerdictVision: AI-Driven Research Engine for Commercial Courts - Government of India</title>
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        background-color: #ff9933;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+    }
+    .logo {
+        max-width: 100px;
+        vertical-align: middle;
+        margin-right: 20px;
+    }
+    h1 {
+        color: #000080;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+    }
+    .main-content {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+    h2 {
+        color: #138808;
+    }
+    .demo-area, .upload-area {
+        border: 2px solid #000080;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 30px;
+    }
+    #search-input, #file-input, #case-id-input {
+        width: 70%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    #search-button, #upload-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #138808;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    #search-button:hover, #upload-button:hover {
+        background-color: #0e6406;
+    }
+    #results, #upload-status {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #e8f4f8;
+        border-radius: 4px;
+    }
+    .selector-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .selector {
+        width: 48%;
+    }
+    select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .ethics-note {
+        font-style: italic;
+        color: #666;
+        margin-top: 30px;
+    }
+    .data-sources {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #e8f4f8;
+        border-radius: 4px;
+        border-left: 4px solid #000080;
+    }
+    .data-sources h3 {
+        color: #000080;
+        margin-top: 0;
+    }
+    .data-sources ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    footer {
+        background-color: #138808;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+    .hero-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    #file-input {
+        display: none;
+    }
+    .file-input-label {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #000080;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .file-input-label:hover {
+        background-color: #00005c;
+    }
+    .input-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .input-field {
+        width: 48%;
+    }
+    .input-field label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .demo-section {
+        margin-top: 30px;
+        text-align: center;
+    }
+    #demo-button {
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #000080;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    #demo-button:hover {
+        background-color: #00005c;
+    }
+    .attention-quote {
+        background-color: #000080;
+        color: #fff;
+        text-align: center;
+        padding: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .attention-quote p {
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="https://presentations.gov.in/wp-content/uploads/2020/01/NE_Preview1.png?x31571" alt="Emblem of India" class="logo" width="100" height="100">
+            <h1>VerdictVision</h1>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <img src="https://www.pmindia.gov.in/wp-content/uploads/2024/07/H20240711162582.jpg" alt="Senior official speaking at a podium, addressing an audience" class="hero-image" width="1200" height="400">
+        
+        <div class="attention-quote">
+            <p>"Justice delayed is justice denied"</p>
+        </div>
+        
+        <h2>AI-Driven Research Engine for Commercial Courts</h2>
+        <p>Welcome to VerdictVision, an initiative by the Government of India to revolutionize legal research in commercial courts. This advanced AI-driven engine is designed to streamline the process of legal research, contributing to faster dispute resolution and ease of doing business in India.</p>
+
+        <div class="demo-area">
+            <h3>VerdictVision Demo</h3>
+            <div class="selector-group">
+                <div class="selector">
+                    <label for="language">Select Language:</label>
+                    <select id="language">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="bn">Bengali</option>
+                        <option value="ta">Tamil</option>
+                        <option value="te">Telugu</option>
+                    </select>
+                </div>
+                <div class="selector">
+                    <label for="state">Select State:</label>
+                    <select id="state">
+                        <option value="all">All States</option>
+                        <option value="mh">Maharashtra</option>
+                        <option value="dl">Delhi</option>
+                        <option value="ka">Karnataka</option>
+                        <option value="tn">Tamil Nadu</option>
+                        <option value="gj">Gujarat</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="case-id-input">Enter case ID:</label>
+                    <input type="text" id="case-id-input" placeholder="Enter case ID">
+                </div>
+                <div class="input-field">
+                    <label for="search-input">Enter your legal query:</label>
+                    <input type="text" id="search-input" placeholder="Enter your legal query...">
+                </div>
+            </div>
+            <button id="search-button">Search</button>
+            <div id="results"></div>
+        </div>
+
+        <div class="upload-area">
+            <h3>Upload Document for Analysis</h3>
+            <p>Upload your legal document for AI-powered analysis and insights.</p>
+            <label for="file-input" class="file-input-label">Choose File</label>
+            <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt">
+            <button id="upload-button">Upload and Analyze</button>
+            <div id="upload-status"></div>
+        </div>
+
+        <p class="ethics-note">Note: VerdictVision is designed to be a facilitator, not a decision-maker. It operates with transparency and neutrality, adhering to the highest ethical standards in AI implementation.</p>
+
+        <div class="data-sources">
+            <h3>Data Sources</h3>
+            <p>VerdictVision's AI model is trained on a comprehensive set of legal resources, including:</p>
+            <ul>
+                <li>Indian Penal Code (IPC)</li>
+                <li>Supreme Court Judgments</li>
+                <li>Environmental Protection Regulation</li>
+                <li>Law Review Articles</li>
+                <li>Employment Contracts</li>
+                <li>The Gazette of India</li>
+            </ul>
+        </div>
+
+        <div class="demo-section">
+            <button id="demo-button">Demo</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Smart India Hackathon, Problem Statement 1701</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        const exampleCase = {
+            caseId: "CC-2023-0042",
+            query: "breach of contract in software development",
+            language: "en",
+            state: "mh",
+            searchResults: {
+                relevantCases: [
+                    { title: "TechCorp vs. SoftwareSolutions Ltd.", citation: "(2022) Com. 156" },
+                    { title: "Digital Innovations Inc. vs. CodeMasters Pvt. Ltd.", citation: "(2021) Com. 89" }
+                ],
+                statutoryProvisions: [
+                    { act: "Indian Contract Act, 1872", section: "73", description: "Compensation for loss or damage caused by breach of contract" },
+                    { act: "Information Technology Act, 2000", section: "43", description: "Penalty and Compensation for damage to computer, computer system, etc." }
+                ],
+                prediction: "70% likelihood of judgment in favor of the plaintiff"
+            },
+            documentAnalysis: {
+                summary: "The document appears to be a software development agreement between TechInnovate Ltd. and CodePro Services. There are clauses related to project milestones, payment schedules, and intellectual property rights.",
+                keyPoints: [
+                    "Project deadline: 6 months from signing",
+                    "Total contract value: ₹50,00,000",
+                    "Penalty for delay: ₹10,000 per day",
+                    "Intellectual Property: Owned by TechInnovate Ltd."
+                ],
+                relevantStatutes: [
+                    "Indian Contract Act, 1872 - Sections 73, 74",
+                    "Information Technology Act, 2000 - Section 65"
+                ],
+                recommendation: "Based on the contract terms and relevant statutes, it is advisable to seek mediation before pursuing litigation. The penalty clause may be enforceable, but courts often look for actual damages incurred."
+            }
+        };
+
+        const searchButton = document.getElementById('search-button');
+        const searchInput = document.getElementById('search-input');
+        const caseIdInput = document.getElementById('case-id-input');
+        const resultsDiv = document.getElementById('results');
+        const languageSelect = document.getElementById('language');
+        const stateSelect = document.getElementById('state');
+        const fileInput = document.getElementById('file-input');
+        const uploadButton = document.getElementById('upload-button');
+        const uploadStatus = document.getElementById('upload-status');
+        const demoButton = document.getElementById('demo-button');
+
+        searchButton.addEventListener('click', performSearch);
+        uploadButton.addEventListener('click', uploadDocument);
+        demoButton.addEventListener('click', startDemo);
+
+        async function performSearch() {
+            const query = searchInput.value;
+            const caseId = caseIdInput.value;
+            const language = languageSelect.value;
+            const state = stateSelect.value;
+
+            if (!query && !caseId) {
+                alert('Please enter a search query or case ID.');
+                return;
+            }
+
+            resultsDiv.innerHTML = 'Searching...';
+
+            try {
+                const response = await axios.get('https://api.verdictvision.gov.in/search', {
+                    params: { query, caseId, language, state }
+                });
+
+                displayResults(response.data);
+            } catch (error) {
+                resultsDiv.innerHTML = 'An error occurred while searching. Please try again.';
+                console.error('Search error:', error);
+            }
+        }
+
+        function displayResults(data) {
+            let resultsHTML = '<h3>Search Results:</h3>';
+
+            if (data.relevantCases) {
+                resultsHTML += '<h4>Relevant Cases:</h4><ul>';
+                data.relevantCases.forEach(caseItem => {
+                    resultsHTML += `<li>${caseItem.title} - ${caseItem.citation}</li>`;
+                });
+                resultsHTML += '</ul>';
+            }
+
+            if (data.statutoryProvisions) {
+                resultsHTML += '<h4>Statutory Provisions:</h4><ul>';
+                data.statutoryProvisions.forEach(provision => {
+                    resultsHTML += `<li>${provision.act}: Section ${provision.section} - ${provision.description}</li>`;
+                });
+                resultsHTML += '</ul>';
+            }
+
+            if (data.prediction) {
+                resultsHTML += `<h4>Case Outcome Prediction:</h4>
+                                <p>${data.prediction}</p>`;
+            }
+
+            resultsDiv.innerHTML = resultsHTML;
+        }
+
+        async function uploadDocument() {
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file to upload.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('document', file);
+
+            uploadStatus.innerHTML = 'Uploading and analyzing document...';
+
+            try {
+                const response = await axios.post('https://api.verdictvision.gov.in/analyze-document', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                displayAnalysisResults(response.data);
+            } catch (error) {
+                uploadStatus.innerHTML = 'An error occurred while analyzing the document. Please try again.';
+                console.error('Document analysis error:', error);
+            }
+        }
+
+        function displayAnalysisResults(data) {
+            let analysisHTML = '<h3>Document Analysis Results:</h3>';
+
+            if (data.summary) {
+                analysisHTML += `<h4>Summary:</h4><p>${data.summary}</p>`;
+            }
+
+            if (data.keyPoints) {
+                analysisHTML += '<h4>Key Points:</h4><ul>';
+                data.keyPoints.forEach(point => {
+                    analysisHTML += `<li>${point}</li>`;
+                });
+                analysisHTML += '</ul>';
+            }
+
+            if (data.relevantStatutes) {
+                analysisHTML += '<h4>Relevant Statutes:</h4><ul>';
+                data.relevantStatutes.forEach(statute => {
+                    analysisHTML += `<li>${statute}</li>`;
+                });
+                analysisHTML += '</ul>';
+            }
+
+            if (data.recommendation) {
+                analysisHTML += `<h4>Recommendation:</h4><p>${data.recommendation}</p>`;
+            }
+
+            uploadStatus.innerHTML = analysisHTML;
+        }
+
+        function startDemo() {
+            caseIdInput.value = exampleCase.caseId;
+            searchInput.value = exampleCase.query;
+            languageSelect.value = exampleCase.language;
+            stateSelect.value = exampleCase.state;
+
+            resultsDiv.innerHTML = 'Searching...';
+            setTimeout(() => {
+                displayResults(exampleCase.searchResults);
+            }, 1500);
+
+            uploadStatus.innerHTML = 'Uploading and analyzing document...';
+            setTimeout(() => {
+                displayAnalysisResults(exampleCase.documentAnalysis);
+            }, 2500);
+
+            setTimeout(() => {
+                resultsDiv.scrollIntoView({ behavior: 'smooth' });
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
