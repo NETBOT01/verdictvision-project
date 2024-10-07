@@ -1,4 +1,4 @@
-<html><head><base href="https://www.verdictvision.gov.in/">
+sr<html><head><base href="https://www.verdictvision.gov.in/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VerdictVision: AI-Driven Research Engine for Commercial Courts - Government of India</title>
@@ -68,7 +68,7 @@
     #search-button:hover, #upload-button:hover {
         background-color: #0e6406;
     }
-    #results, #upload-status {
+    #results, #upload-status, #chatbot-response {
         margin-top: 20px;
         padding: 20px;
         background-color: #e8f4f8;
@@ -180,7 +180,56 @@
     .attention-quote p {
         margin: 0;
     }
+    .download-icon {
+        cursor: pointer;
+        margin-left: 10px;
+        color: #000080;
+    }
+    .download-icon:hover {
+        color: #0000ff;
+    }
+    #chatbot-interface {
+        margin-top: 30px;
+        padding: 20px;
+        border: 2px solid #000080;
+        border-radius: 8px;
+    }
+    #chatbot-interface h4 {
+        color: #000080;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        background-color: #e8f4f8;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    #chatbot-input {
+        width: 70%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+    #chatbot-interface button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #138808;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    #chatbot-interface button:hover {
+        background-color: #0e6406;
+    }
+    #chatbot-response {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #f4f4f4;
+        border-radius: 4px;
+    }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -283,14 +332,17 @@
             state: "mh",
             searchResults: {
                 relevantCases: [
-                    { title: "TechCorp vs. SoftwareSolutions Ltd.", citation: "(2022) Com. 156" },
-                    { title: "Digital Innovations Inc. vs. CodeMasters Pvt. Ltd.", citation: "(2021) Com. 89" }
+                    { title: "TechCorp vs. SoftwareSolutions Ltd.", citation: "(2022) Com. 156", summary: "Dispute over delayed software delivery and quality issues. Court ruled in favor of TechCorp, awarding damages for breach of contract." },
+                    { title: "Digital Innovations Inc. vs. CodeMasters Pvt. Ltd.", citation: "(2021) Com. 89", summary: "Case involving intellectual property rights in custom software development. Court upheld the client's ownership of the developed software." },
+                    { title: "CloudStore Ltd. vs. DataSystems Corp.", citation: "(2020) Com. 212", summary: "Dispute over data migration and system integration failures. Court ordered partial refund and mandated completion of project milestones." }
                 ],
                 statutoryProvisions: [
-                    { act: "Indian Contract Act, 1872", section: "73", description: "Compensation for loss or damage caused by breach of contract" },
-                    { act: "Information Technology Act, 2000", section: "43", description: "Penalty and Compensation for damage to computer, computer system, etc." }
+                    { act: "Indian Contract Act, 1872", section: "73", description: "Compensation for loss or damage caused by breach of contract", explanation: "This section allows the aggrieved party to claim compensation for any loss or damage caused by the breach of contract." },
+                    { act: "Information Technology Act, 2000", section: "43", description: "Penalty and Compensation for damage to computer, computer system, etc.", explanation: "This section provides for compensation in cases of unauthorized access, introduction of viruses, or damage to computer systems." },
+                    { act: "Specific Relief Act, 1963", section: "10", description: "Specific performance of contract", explanation: "This section allows the court to direct specific performance of a contract, which may be relevant in software development agreements." }
                 ],
-                prediction: "70% likelihood of judgment in favor of the plaintiff"
+                prediction: "70% likelihood of judgment in favor of the plaintiff",
+                analysis: "Based on the facts presented and similar past cases, there is a strong indication of breach of contract. The delay in delivery and quality issues reported are significant factors that courts have considered in previous judgments. The plaintiff's case is strengthened by documented communication and attempts to resolve the issues prior to litigation."
             },
             documentAnalysis: {
                 summary: "The document appears to be a software development agreement between TechInnovate Ltd. and CodePro Services. There are clauses related to project milestones, payment schedules, and intellectual property rights.",
@@ -335,17 +387,9 @@
             }
 
             resultsDiv.innerHTML = 'Searching...';
-
-            try {
-                const response = await axios.get('https://api.verdictvision.gov.in/search', {
-                    params: { query, caseId, language, state }
-                });
-
-                displayResults(response.data);
-            } catch (error) {
-                resultsDiv.innerHTML = 'An error occurred while searching. Please try again.';
-                console.error('Search error:', error);
-            }
+            setTimeout(() => {
+                displayResults(exampleCase.searchResults);
+            }, 1500);
         }
 
         function displayResults(data) {
@@ -353,8 +397,12 @@
 
             if (data.relevantCases) {
                 resultsHTML += '<h4>Relevant Cases:</h4><ul>';
-                data.relevantCases.forEach(caseItem => {
-                    resultsHTML += `<li>${caseItem.title} - ${caseItem.citation}</li>`;
+                data.relevantCases.forEach((caseItem, index) => {
+                    resultsHTML += `<li>
+                        <strong>${caseItem.title}</strong> - ${caseItem.citation}
+                        <i class="fas fa-download download-icon" onclick="downloadCase(${index})" title="Download case document"></i>
+                        <p>${caseItem.summary}</p>
+                    </li>`;
                 });
                 resultsHTML += '</ul>';
             }
@@ -362,7 +410,10 @@
             if (data.statutoryProvisions) {
                 resultsHTML += '<h4>Statutory Provisions:</h4><ul>';
                 data.statutoryProvisions.forEach(provision => {
-                    resultsHTML += `<li>${provision.act}: Section ${provision.section} - ${provision.description}</li>`;
+                    resultsHTML += `<li>
+                        <strong>${provision.act}: Section ${provision.section}</strong> - ${provision.description}
+                        <p>${provision.explanation}</p>
+                    </li>`;
                 });
                 resultsHTML += '</ul>';
             }
@@ -372,7 +423,58 @@
                                 <p>${data.prediction}</p>`;
             }
 
+            if (data.analysis) {
+                resultsHTML += `<h4>Case Analysis:</h4>
+                                <p>${data.analysis}</p>`;
+            }
+
+            resultsHTML += `
+                <div id="chatbot-interface">
+                    <h4>Ask for More Information</h4>
+                    <input type="text" id="chatbot-input" placeholder="Ask a question about the results...">
+                    <button onclick="askChatbot()">Send</button>
+                    <div id="chatbot-response"></div>
+                </div>
+            `;
+
             resultsDiv.innerHTML = resultsHTML;
+        }
+
+        function askChatbot() {
+            const chatbotInput = document.getElementById('chatbot-input');
+            const chatbotResponse = document.getElementById('chatbot-response');
+            const question = chatbotInput.value;
+
+            if (question.trim() === '') {
+                alert('Please enter a question.');
+                return;
+            }
+
+            chatbotResponse.innerHTML = 'Processing your question...';
+
+            // Simulate API call to chatbot service
+            setTimeout(() => {
+                const response = generateChatbotResponse(question);
+                chatbotResponse.innerHTML = `<p><strong>You asked:</strong> ${question}</p><p><strong>Response:</strong> ${response}</p>`;
+                chatbotInput.value = '';
+            }, 1000);
+        }
+
+        function generateChatbotResponse(question) {
+            const responses = {
+                'contract': 'In contract law, breaches can be categorized as material or minor. A material breach may entitle the aggrieved party to damages and potentially terminate the contract.',
+                'damages': 'Damages in commercial cases can include direct losses, consequential damages, and in some cases, punitive damages. The exact amount depends on the specifics of the case and the evidence presented.',
+                'precedent': 'Legal precedents play a crucial role in commercial cases. Courts often look at similar past cases to guide their decisions, especially in areas like contract interpretation and breach of contract claims.',
+                'default': 'I\'m sorry, I don\'t have specific information about that. Could you please rephrase your question or ask about a different aspect of commercial law?'
+            };
+
+            const lowercaseQuestion = question.toLowerCase();
+            for (const [key, value] of Object.entries(responses)) {
+                if (lowercaseQuestion.includes(key)) {
+                    return value;
+                }
+            }
+            return responses.default;
         }
 
         async function uploadDocument() {
@@ -450,6 +552,10 @@
             setTimeout(() => {
                 resultsDiv.scrollIntoView({ behavior: 'smooth' });
             }, 3000);
+        }
+
+        function downloadCase(index) {
+            alert(`Downloading case document for ${exampleCase.searchResults.relevantCases[index].title}`);
         }
     </script>
 </body>
