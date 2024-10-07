@@ -332,6 +332,7 @@ sr<html><head><base href="https://www.verdictvision.gov.in/">
             state: "mh",
             searchResults: {
                 relevantCases: [
+                    {title:"Commisioner of service tax delhi vs QuickHeal technologies ltd.", citation:"(2022) Com. 930",summary:"Case involving engagement of supply of Quick Heal Antivirus software licence key along with replicated Cds/DVDs."},
                     { title: "TechCorp vs. SoftwareSolutions Ltd.", citation: "(2022) Com. 156", summary: "Dispute over delayed software delivery and quality issues. Court ruled in favor of TechCorp, awarding damages for breach of contract." },
                     { title: "Digital Innovations Inc. vs. CodeMasters Pvt. Ltd.", citation: "(2021) Com. 89", summary: "Case involving intellectual property rights in custom software development. Court upheld the client's ownership of the developed software." },
                     { title: "CloudStore Ltd. vs. DataSystems Corp.", citation: "(2020) Com. 212", summary: "Dispute over data migration and system integration failures. Court ordered partial refund and mandated completion of project milestones." }
@@ -396,15 +397,34 @@ sr<html><head><base href="https://www.verdictvision.gov.in/">
             let resultsHTML = '<h3>Search Results:</h3>';
 
             if (data.relevantCases) {
+                // resultsHTML += '<h4>Relevant Cases:</h4><ul>';
+                // data.relevantCases.forEach((caseItem, index) => {
+                //     resultsHTML += `<li>
+                //         <strong>${caseItem.title}</strong> - ${caseItem.citation}
+                //         <i class="fas fa-download download-icon" onclick="downloadCase(${index})" title="Download case document"></i>
+                //         <p>${caseItem.summary}</p>
+                //     </li>`;
+                // });
+                // resultsHTML += '</ul>';
+
                 resultsHTML += '<h4>Relevant Cases:</h4><ul>';
-                data.relevantCases.forEach((caseItem, index) => {
-                    resultsHTML += `<li>
-                        <strong>${caseItem.title}</strong> - ${caseItem.citation}
-                        <i class="fas fa-download download-icon" onclick="downloadCase(${index})" title="Download case document"></i>
-                        <p>${caseItem.summary}</p>
-                    </li>`;
-                });
-                resultsHTML += '</ul>';
+data.relevantCases.forEach((caseItem, index) => {
+    if (index === 0) {
+        resultsHTML += `<li>
+            <strong>${caseItem.title}</strong> - ${caseItem.citation}
+            <i class="fas fa-download download-icon" onclick="downloadFile()" title="Download case document"></i>
+            <p>${caseItem.summary}</p>
+        </li>`;
+    } else {
+        resultsHTML += `<li>
+            <strong>${caseItem.title}</strong> - ${caseItem.citation}
+            <i class="fas fa-download download-icon" onclick="downloadCase(${index})" title="Download case document"></i>
+            <p>${caseItem.summary}</p>
+        </li>`;
+    }
+});
+resultsHTML += '</ul>';
+
             }
 
             if (data.statutoryProvisions) {
@@ -556,6 +576,14 @@ sr<html><head><base href="https://www.verdictvision.gov.in/">
 
         function downloadCase(index) {
             alert(`Downloading case document for ${exampleCase.searchResults.relevantCases[index].title}`);
+        }
+        function downloadFile() {
+            const a = document.createElement('a');
+            a.href = 'https://raw.githubusercontent.com/NETBOT01/verdictvision-project/main/judgement.pdf';
+            a.download = 'judgement.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
     </script>
 </body>
